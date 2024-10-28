@@ -2,7 +2,6 @@ const express = require('express');
 const fs = require('fs');
 const filename = './todo.json';
 
-let id = 1;
 
 const app = express();
 app.use(express.json());
@@ -54,13 +53,14 @@ app.get('/', async (req, res) => {
 // Endpoint to add a new task
 app.post('/', async (req, res) => {
   const { todo, completed } = req.body;
+  const id = Math.floor(Math.random() * 100);
 
   if (typeof todo === 'undefined' || typeof completed === 'undefined') {
     return res.status(400).send('Please provide all the required details');
   }
 
   const time = new Date().toISOString();
-  const newTask = { id: ++id, todo, completed, time };
+  const newTask = { id: id, todo, completed, time };
 
   try {
     const jsonData = await jsonToObject();
@@ -123,6 +123,6 @@ app.delete('/', async (req, res) => {
 });
 
 // Start the server
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log('Server running on port 3000');
 });

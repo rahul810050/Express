@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FE & BE</title>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+	<script>
+		async function getSum(){
+			const a = document.querySelector('.a').value
+			const b = document.querySelector('.b').value
+			await axios.post('http://localhost:3000/sum',{
+				a: a,
+				b: b
+			})
+		}
+	</script>
+</head>
+<body>
+
+	<input type="text" class="a">
+	<input type="text" class="b">
+	<button onclick="getSum()">Call Backend</button>
+</body>
+</html>
