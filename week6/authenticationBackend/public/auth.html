@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Authentication</title>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+	<div class="signupDiv">
+		<h4>signup</h4>
+		<label for="signup">Username</label>
+		<input class="signup-username" type="text" placeholder="username">
+		<label for="signup">email</label>
+		<input class="signup-email" type="text" placeholder="email">
+		<label for="signup">password</label>
+		<input class="signup-password" type="text" placeholder="password">
+		<button onclick="signUp()">Submit</button>
+	</div>
+	
+	<div class="signinDiv">
+		<h4>signin</h4>
+		<label for="signup">Username</label>
+		<input class="signin-username" type="text" placeholder="username">
+		<label for="signup">email</label>
+		<input class="signin-email" type="text" placeholder="email">
+		<label for="signup">password</label>
+		<input class="signin-password" type="text" placeholder="password">
+		<button onclick="signIn()">Submit</button>
+	</div>
+
+	<div class="userInformation" style="display: none;">
+		
+	</div>
+
+	<div class="logout-btn" style="display: none;">
+		<button onclick="logoutFunction()">logout</button>
+	</div>
+
+
+	<script>
+		const signupDiv = document.querySelector('.signupDiv')
+		const signinDiv = document.querySelector('.signinDiv')
+		const userInformation = document.querySelector('.userInformation')
+		const logoutBtn = document.querySelector('.logout-btn')
+
+
+		async function signUp(){
+			const username = document.querySelector('.signup-username').value;
+			const email = document.querySelector('.signup-email').value;
+			const password = document.querySelector('.signup-password').value;
+
+			const res = await axios.post('http://localhost:3000/signup',{
+				username: username,
+				email: email,
+				password: password
+			})
+			console.log(res.data)
+		}
+
+
+		async function signIn(){
+			const username = document.querySelector('.signin-username').value;
+			const email = document.querySelector('.signin-email').value;
+			const password = document.querySelector('.signin-password').value;
+
+			try{
+				const res = await axios.post('http://localhost:3000/signin',{
+				username: username,
+				email: email,
+				password: password
+			})
+			if(res.data){
+				localStorage.setItem("token", res.data)
+				console.log(res.data)
+				getUserInformation()
+			}
+			} catch(error){
+				console.log(error)
+			}
+		}
+
+
+		async function getUserInformation(){
+			try{
+				const res = await axios.get('http://localhost:3000/me',{
+					headers: localStorage.getItem('token')
+				})
+				if(res.data){
+					userInformation.style.display = "block"
+					signinDiv.style.display = "none";
+					signupDiv.style.display = "none";
+					logoutBtn.style.display = "block";
+
+					userInformation.innerHTML = `<h2>User information</h2> username: ${res.data.username} email: ${res.data.email} password: ${res.data.password}`
+				} else{
+					userInformation.style.display = "block"
+					userInformation.innerHTML = `data not found`
+				}
+
+			} catch(error){
+				console.log(error)
+			}
+		}
+
+		function logoutFunction(){
+			logoutBtn.style.display = "none"
+			signinDiv.style.display = "block";
+			signupDiv.style.display = "block";
+			userInformation.style.display = "none"
+			localStorage.removeItem('token')
+		}
+
+
+	</script>
+</body>
+</html>
