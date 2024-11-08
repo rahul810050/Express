@@ -94,6 +94,8 @@ adminRouter.post('/signin', async function(req, res){
 	}
 })
 
+
+// this endpoint is to create courses
 adminRouter.post('/course', adminCheck, async function(req, res){
 	const {title, description, price, imageURL} = req.body;
 
@@ -109,7 +111,7 @@ adminRouter.post('/course', adminCheck, async function(req, res){
 		title: title,
 		description: description,
 		price: price,
-		imageURL: imageURL,
+		imageURL: imageURL,	
 		creatorId: id,
 	}
 	try{
@@ -123,6 +125,69 @@ adminRouter.post('/course', adminCheck, async function(req, res){
 		})
 	}
 })
+
+
+// this endpoint is to update any course
+adminRouter.put('/update', adminCheck, async function(req, res){
+	const {title, description, price, imageURL} = req.body;
+
+	// if(typeof title === 'undefined' || typeof description === 'undefined' || typeof price === 'undefined' || typeof imageURL === 'undefined'){
+	// 	return res.status(403).json({
+	// 		msg: "Please provide all the required details"
+	// 	})
+	// }
+
+	const id = req.id;
+	try{
+		const course = await courseModel.findOne({creatorId: id});
+
+		if(!course){
+			return res.status(403).json({
+				msg: "not course found...create course"
+			})
+		}	
+
+
+		if(typeof title !== 'undefined'){
+			course.title = title
+		}
+		if(typeof description !== 'undefined'){
+			course.description = description
+		}
+		if(typeof price !== 'undefined'){
+			course.price = price
+		}
+		if(typeof imageURL !== 'undefined'){
+			course.imageURL = imageURL
+		}
+
+		await course.save();
+		
+		res.status(200).json({
+			msg: "course updated successfully"
+		})
+	} catch(error){
+		res.status(404).json({
+			error: error.message
+		})
+	}
+	
+})
+
+
+// this endpoint is to get all the courses in bulk which were created by this admin
+adminRouter.get('/bulk', adminCheck, async function(req, res){
+	const id = req.id;
+	try{
+		const allCourses = await courseModel.find({creatorId: id});
+		res.status(200).json({allCourses});
+	} catch(error){
+		res.status(404).json({
+			error: error.message
+		})
+	}
+})
+
 
 module.exports = {
 	adminRouter: adminRouter

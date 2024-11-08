@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const { userCheck } = require('../middleware/userCheck');
 require('dotenv').config();
 
+
 userRouter.post('/signup', async function (req, res) {
     const requiredBody = z.object({
         username: z.string().min(3).max(30),
@@ -118,7 +119,7 @@ userRouter.post('/purchase', userCheck, async function (req, res) {
     }
 });
 
-
+// this endpoint is already written finely in course router this will not be used later
 userRouter.get('/purchaseCourses', async function(req, res){
 	const userid = req.id;
 

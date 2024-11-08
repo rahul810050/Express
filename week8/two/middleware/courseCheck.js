@@ -1,9 +1,10 @@
+const express = require('express')
 const jwt = require('jsonwebtoken')
+require('dotenv').config();
 
-
-async function userCheck(req, res, next){
+async function courseCheck(req, res, next){
 	const token = req.headers.token;
-	if(typeof token === 'undefined'){
+	if(!token){
 		return res.status(404).json({
 			msg: "token not found"
 		})
@@ -11,18 +12,15 @@ async function userCheck(req, res, next){
 
 	try{
 		const verified = jwt.verify(token, process.env.JWT_SECRET);
-		console.log(verified)
-		// const user = await userModel.findById(verified.id)
 		req.id = verified.id;
-		next();
+		next()
 	} catch(error){
-		res.status(500).json({
+		res.status(400).json({
 			error: error.message
 		})
 	}
 }
 
-
 module.exports = {
-	userCheck
+	courseCheck
 }
