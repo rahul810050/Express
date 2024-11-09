@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 const { userCheck } = require('../middleware/userCheck');
 require('dotenv').config();
 
-
 userRouter.post('/signup', async function (req, res) {
     const requiredBody = z.object({
         username: z.string().min(3).max(30),
@@ -16,7 +15,6 @@ userRouter.post('/signup', async function (req, res) {
     });
 
     const parseBody = requiredBody.safeParse(req.body);
-
     if (!parseBody.success) {
         return res.status(403).json({
             msg: "Incorrect credentials",
@@ -25,117 +23,84 @@ userRouter.post('/signup', async function (req, res) {
     }
 
     const { username, email, password } = req.body;
-		// console.log(res.body)
-
     const hashedPass = await bcrypt.hash(password, 10);
-
     const existUser = await userModel.findOne({ email: email });
 
     if (existUser) {
-        return res.status(409).json({
-            msg: "User already exists"
-        });
+        return res.status(409).json({ msg: "User already exists" });
     }
 
-    const newUser = {
-        username: username,
-        email: email,
-        password: hashedPass
-    };
-
+    const newUser = { username, email, password: hashedPass };
     try {
         await userModel.create(newUser);
-        res.status(200).json({
-            msg: "Registration successful"
-        });
+        res.status(200).json({ msg: "Registration successful" });
     } catch (error) {
-        res.status(500).json({
-            error: error.message
-        });
+        res.status(500).json({ error: error.message });
     }
 });
 
 userRouter.post('/signin', async function (req, res) {
     const { email, password } = req.body;
-
     if (!email || !password) {
-        return res.status(403).json({
-            msg: "Please provide email and password"
-        });
+        return res.status(403).json({ msg: "Please provide email and password" });
     }
 
-    const user = await userModel.findOne({ email: email });
-
+    const user = await userModel.findOne({ email });
     if (!user) {
-        return res.status(404).json({
-            msg: "User does not exist, please sign up"
-        });
+        return res.status(404).json({ msg: "User does not exist, please sign up" });
     }
 
-    const isPasswordValid = bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-        return res.status(403).json({
-            msg: "Incorrect password"
-        });
+        return res.status(403).json({ msg: "Incorrect password" });
     }
 
     try {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(200).json({
-            msg: "Login successful",
-            token: token
-        });
+        res.status(200).json({ msg: "Login successful", token });
     } catch (error) {
-        res.status(500).json({
-            error: error.message
-        });
+        res.status(500).json({ error: error.message });
     }
 });
 
 userRouter.post('/purchase', userCheck, async function (req, res) {
-    const { creatorId } = req.body;
-    if (!creatorId) {
-        return res.status(400).json({
-            msg: "Creator ID is required for purchases."
-        });
+    const { courseId } = req.body;
+    if (!courseId) {
+        return res.status(400).json({ msg: "Course ID is required for purchases." });
     }
 
     const userId = req.id;
-
-    const newBuyer = {
-        creatorId: creatorId,
-        userId: userId
-    };
+    const newPurchase = { courseId, userId };
 
     try {
-        await purchaseModel.create(newBuyer);
+        const coursePurchase = await purchaseModel.create(newPurchase);
         res.status(200).json({
-            msg: "Purchase successful"
+            msg: "Purchase successful",
+            courseId: coursePurchase._id
         });
     } catch (error) {
-        res.status(500).json({
-            error: error.message
-        });
+        res.status(500).json({ error: error.message });
     }
 });
 
-// this endpoint is already written finely in course router this will not be used later
-userRouter.get('/purchaseCourses', async function(req, res){
-	const userid = req.id;
+userRouter.get('/purchaseCourses', userCheck, async function(req, res) {
+	const userId = req.id;
 
-	try{
-		const courses = await courseModel.find({userid: userid});
-		console.log(courses);
+	try {
+		const userPurchases = await purchaseModel.find({ userId });
+		const courseIds = userPurchases.map(purchase => purchase.courseId);
+
+		const purchasedCourses = await courseModel.find({
+			_id: { $in: courseIds } 
+		});
+
 		res.status(200).json({
-			courses
-		})
-	} catch(error){
-		res.status(404).json({
-			error: error.message
-		})
+			userPurchases,
+			purchasedCourses
+		});
+	} catch (error) {
+		res.status(404).json({ error: error.message });
 	}
-})
+});
 
-module.exports = {
-    userRouter: userRouter
-};
+module.exports = { userRouter };

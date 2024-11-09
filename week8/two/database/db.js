@@ -23,7 +23,7 @@ const courseSchema = new Schema({
 }, { timestamps: true });
 
 const purchaseSchema = new Schema({
-    creatorId: { type: ObjectId, ref: 'admin' },
+    courseId: { type: ObjectId, ref: 'courses' },
     userId: { type: ObjectId, ref: 'users' }
 }, { timestamps: true });
 

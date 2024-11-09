@@ -11,7 +11,7 @@ async function userCheck(req, res, next){
 
 	try{
 		const verified = jwt.verify(token, process.env.JWT_SECRET);
-		console.log(verified)
+		// console.log(verified)
 		// const user = await userModel.findById(verified.id)
 		req.id = verified.id;
 		next();

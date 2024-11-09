@@ -129,7 +129,7 @@ adminRouter.post('/course', adminCheck, async function(req, res){
 
 // this endpoint is to update any course
 adminRouter.put('/update', adminCheck, async function(req, res){
-	const {title, description, price, imageURL} = req.body;
+	const {title, description, price, imageURL, courseid} = req.body;
 
 	// if(typeof title === 'undefined' || typeof description === 'undefined' || typeof price === 'undefined' || typeof imageURL === 'undefined'){
 	// 	return res.status(403).json({
@@ -139,7 +139,7 @@ adminRouter.put('/update', adminCheck, async function(req, res){
 
 	const id = req.id;
 	try{
-		const course = await courseModel.findOne({creatorId: id});
+		const course = await courseModel.findOne({_id: courseid, creatorId: id});
 
 		if(!course){
 			return res.status(403).json({
