@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Course Selling App</title>
+	<style>
+		/* General Styles */
+		body {
+			font-family: 'Segoe UI', sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #1e1e2e;
+			color: #f0f0f5;
+		}
+
+		/* Navigation Styles */
+		.navigation {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 15px 20px;
+			background: linear-gradient(45deg, #8e24aa, #ff7043);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+			color: #f0f0f5;
+		}
+
+		.navigation h1 {
+			font-size: 28px;
+			color: #ffcc80;
+			font-weight: bold;
+			letter-spacing: 1px;
+			text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+		}
+
+		.navigation ul {
+			display: flex;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.navigation li {
+			margin: 0 15px;
+		}
+
+		.navigation li a {
+			text-decoration: none;
+			color: #f3e5f5;
+			font-weight: 500;
+			font-size: 18px;
+			transition: color 0.3s ease, transform 0.3s ease;
+		}
+
+		.navigation li a:hover {
+			color: #d7b98e;
+			transform: scale(1.1);
+		}
+
+		.navigation button {
+			padding: 10px 20px;
+			border: none;
+			background: #ff7043;
+			color: #fff;
+			font-weight: bold;
+			border-radius: 25px;
+			cursor: pointer;
+			font-size: 16px;
+			transition: background 0.3s ease, transform 0.3s ease;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		}
+
+		.navigation button:hover {
+			background-color: #d64f27;
+			transform: translateY(-2px);
+		}
+
+		/* Main Content Styles */
+		.main-content {
+			padding: 40px 20px;
+			text-align: center;
+		}
+
+		.main-content h2 {
+			color: #ffcc80;
+			font-size: 36px;
+			font-weight: 600;
+		}
+
+		.main-content p {
+			font-size: 20px;
+			line-height: 1.6;
+			margin: 20px 0;
+			color: #d3d3e7;
+		}
+
+		/* Course Image Animation */
+		.coursesAnimation {
+			display: flex;
+			justify-content: center;
+			margin: 40px 0;
+			gap: 15px;
+			overflow: hidden;
+			flex-wrap: wrap;
+		}
+
+		.coursesAnimation div {
+			width: 200px;
+			height: 150px;
+			overflow: hidden;
+			border-radius: 15px;
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+			transform: scale(1);
+			transition: transform 0.3s ease;
+		}
+
+		.coursesAnimation div:hover {
+			transform: scale(1.1);
+		}
+
+		.coursesAnimation img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.3s ease;
+		}
+
+		/* Why Buy Section */
+		.whyBuy {
+			text-align: center;
+			margin: 40px 20px;
+		}
+
+		.whyBuy h1 {
+			color: #ffcc80;
+			font-size: 32px;
+			font-weight: 600;
+			margin-bottom: 15px;
+		}
+
+		.whyBuy img {
+			width: 80%;
+			max-width: 400px;
+			border-radius: 10px;
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+			transition: transform 0.3s ease;
+		}
+
+		.whyBuy img:hover {
+			transform: scale(1.05);
+		}
+
+		/* Responsive Design */
+		@media (max-width: 600px) {
+			.navigation {
+				flex-direction: column;
+				padding: 15px;
+			}
+			.navigation ul {
+				flex-direction: column;
+			}
+			.navigation li {
+				margin: 8px 0;
+			}
+			.navigation button {
+				margin-top: 10px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="navigation">
+			<div>
+				<h1>Course Selling App</h1>
+			</div>
+			<div>
+				<ul>
+					<li><a href="/home">Home</a></li>
+					<li><a href="/new-course">New Course</a></li>
+				</ul>
+			</div>
+			<div>
+				<button>Sign In / Sign Up</button>
+			</div>
+		</nav>
+	</header>
+
+	<section class="main-content">
+		<h2>Welcome to the Course Selling App</h2>
+		<p>Explore, learn, and grow with a wide variety of courses from expert instructors. Sign up to start your journey today!</p>
+
+		<div class="coursesAnimation">
+			<div><img src="./images/cohort3.jpeg" alt="Course 1"></div>
+			<div><img src="./images/2.png" alt="Course 2"></div>
+			<div><img src="./images/webdev&web3.png" alt="Course 3"></div>
+			<div><img src="./images/2.png" alt="Course 4"></div>
+			<div><img src="./images/cohort3.jpeg" alt="Course 5"></div>
+		</div>
+
+		<div class="whyBuy">
+			<h1>Why Should You Buy?</h1>
+			<img src="./images/why should we buy.jpeg" alt="Why Buy Image">
+		</div>
+	</section>
+</body>
+</html>

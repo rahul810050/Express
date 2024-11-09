@@ -4,7 +4,7 @@ const userRouter = express.Router();
 const { z } = require('zod');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { userCheck } = require('../middleware/userCheck');
+const { userCheck } = require('../../frontend/middleware/userCheck');
 require('dotenv').config();
 
 userRouter.post('/signup', async function (req, res) {
