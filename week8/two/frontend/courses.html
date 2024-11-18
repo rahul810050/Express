@@ -13,6 +13,7 @@
 			background-color: #282c34;
 			color: #e2e8f0;
 			overflow-x: hidden;
+			line-height: 1.6;
 		}
 
 		/* Navigation Styles */
@@ -89,7 +90,7 @@
 		}
 
 		/* Main Content Styles */
-		.main-content {
+		.container {
 			padding: 60px 20px;
 			text-align: center;
 			animation: fadeInUp 1s ease-out;
@@ -100,105 +101,93 @@
 			100% { transform: translateY(0); opacity: 1; }
 		}
 
-		.main-content h2 {
+		.container h1 {
 			color: #ffdd67;
 			font-size: 36px;
 			font-weight: 600;
+			margin-bottom: 20px;
 		}
 
-		.main-content p {
+		.container p {
 			font-size: 20px;
-			line-height: 1.6;
-			margin: 20px 0;
 			color: #b3c7d6;
-			max-width: 700px;
+			max-width: 800px;
 			margin: 0 auto;
+			line-height: 1.6;
 		}
 
-		/* Course Image Animation */
-		.coursesAnimation {
-			display: flex;
-			justify-content: center;
-			margin: 40px 0;
-			gap: 20px;
-			overflow: hidden;
-			flex-wrap: nowrap;
-		}
-
-		.coursesAnimation div {
-			width: 450px;
-			height: 300px;
-			overflow: hidden;
-			border-radius: 20px;
-			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-			animation: slide 12s infinite linear;
-			transition: transform 0.3s ease;
-		}
-
-		.coursesAnimation div:hover {
-			transform: scale(1.1);
-		}
-
-		.coursesAnimation img {
-			width: 100%;
-			height: 100%;
-		}
-
-		/* Slide Animation */
-		@keyframes slide {
-			0% { transform: translateX(100vw); }
-			100% { transform: translateX(-100vw); }
-		}
-
-		/* Why Buy Section */
-		.whyBuy {
-			text-align: center;
-			margin: 50px 20px;
-			animation: fadeIn 2s ease-in-out;
-		}
-
-		.whyBuy h1 {
+		.container h2 {
 			color: #ffdd67;
 			font-size: 32px;
 			font-weight: 600;
-			margin-bottom: 15px;
+			margin: 20px 0;
 		}
 
-		.whyBuy img {
-			width: 85%;
-			max-width: 1200px;
-			border-radius: 15px;
-			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+		.container ol {
+			font-size: 18px;
+			color: #b3c7d6;
+			max-width: 700px;
+			margin: 0 auto;
+			line-height: 1.6;
+		}
+
+		.container ol li {
+			margin: 10px 0;
+		}
+
+		/* Grid Layout Styles */
+		.grid-container {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 30px;
+			padding: 20px;
+		}
+
+		.grid-item {
+			background-color: #3a3f47;
+			border-radius: 10px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			text-align: center;
 			transition: transform 0.3s ease;
 		}
 
-		.whyBuy img:hover {
-			transform: scale(1.05);
+		.grid-item:hover {
+			transform: translateY(-5px);
 		}
 
-		/* About Section */
-		.about {
-			background-color: #3a3f4b;
-			padding: 40px;
-			margin: 50px 20px;
-			border-radius: 15px;
-			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-			max-width: 800px;
-			margin-left: auto;
-			margin-right: auto;
-			animation: fadeInUp 2s ease-out;
+		.grid-item img {
+			width: 100%;
+			border-radius: 8px;
+			height: auto;
 		}
 
-		.about h2 {
+		.grid-item h4 {
 			color: #ffdd67;
-			font-size: 30px;
-			margin-bottom: 15px;
+			font-size: 24px;
+			margin-top: 15px;
 		}
 
-		.about p {
-			font-size: 18px;
-			line-height: 1.6;
+		.grid-item p {
 			color: #b3c7d6;
+			font-size: 16px;
+			margin: 10px 0;
+		}
+
+		.grid-item button {
+			padding: 10px 20px;
+			background: #ff7043;
+			color: #fff;
+			font-weight: bold;
+			border-radius: 25px;
+			border: none;
+			cursor: pointer;
+			transition: background 0.3s ease, transform 0.3s ease;
+		}
+
+		.grid-item button:hover {
+			background-color: #ff5733;
+			transform: translateY(-2px);
 		}
 
 		/* Footer Styles */
@@ -245,19 +234,10 @@
 			text-decoration: underline;
 		}
 
-		.footer img {
-			width: 150px;
-			transition: transform 0.3s ease;
-		}
-
-		.footer img:hover {
-			transform: scale(1.1);
-		}
-
 		.footer .social-media a img {
 			width: 35px;
 			margin: 0 10px;
-			transition: transform 0.3s ease, color 0.3s ease;
+			transition: transform 0.3s ease;
 		}
 
 		.footer .social-media a:hover img {
@@ -279,8 +259,8 @@
 
 		/* Responsive Design */
 		@media (max-width: 768px) {
-			.coursesAnimation {
-				flex-direction: column;
+			.grid-container {
+				grid-template-columns: 1fr 1fr;
 			}
 
 			.footer-content {
@@ -288,8 +268,14 @@
 				align-items: center;
 			}
 
-			.about, .footer {
-				padding: 20px;
+			.container {
+				padding: 40px 10px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.grid-container {
+				grid-template-columns: 1fr;
 			}
 		}
 	</style>
@@ -298,32 +284,52 @@
 	<div class="navigation">
 		<h1>CourseHub</h1>
 		<ul>
-			<li><a href="./courses.html">Courses</a></li>
+			<li><a href="#courses">Courses</a></li>
 			<li><a href="#about">About Us</a></li>
 			<li><a href="#contact">Contact</a></li>
 		</ul>
 		<button id="joinBtn">Join Now</button>
 	</div>
 
-	<div class="main-content">
-		<h2>Welcome to CourseHub</h2>
-		<p>Explore a wide range of online courses to accelerate your learning and career growth.</p>
-	</div>
-
-	<div class="coursesAnimation">
-		<div><img src="./images/cohort3.jpeg" alt="Course 1"></div>
-		<div><img src="./images/webdev&web3.png" alt="Course 2"></div>
-		<div><img src="./images/2.png" alt="Course 3"></div>
-	</div>
-
-	<div class="whyBuy">
-		<h1>Why Choose Our Platform?</h1>
-		<img src="./images/why should we buy.jpeg" alt="Why Choose Us">
-	</div>
-
-	<div class="about" id="about">
-		<h2>About Us</h2>
-		<p>At CourseHub, we are committed to delivering high-quality education at your fingertips. Our platform offers a wide variety of courses designed by industry experts.</p>
+	<div class="container">
+		<div class="grid-container">
+			<div class="grid-item">
+				<img src="./images/webdevopswebb3.png" alt="Course 1">
+				<h4>Complete Web Development + Devops + Blockchain Cohort</h4>
+				<p>Complete syllabus - https://blog.100xdevs.com/ Starts 2nd Au..</p>
+				<button class="joinBtn">Start Learning</button>
+			</div>
+			<div class="grid-item">
+				<img src="./images/webdevops.png" alt="Course 2">
+				<h4>Complete Web development + Devops Cohort</h4>
+				<p>Starts 2nd August 2024 Complete syllabus - https://blog.100x..</p>
+				<button class="joinBtn">Start Learning</button>
+			</div>
+			<div class="grid-item">
+				<img src="./images/web3.png" alt="Course 3">
+				<h4>Complete Web3/Blockchain Cohort</h4>
+				<p>Complete syllabus - https://blog.100xdevs.com/ Starts 2nd Au..</p>
+				<button class="joinBtn">Start Learning</button>
+			</div>
+			<div class="grid-item">
+				<img src="./images/fullstack.jpeg" alt="Course 3">
+				<h4>Live Full Stack Open Source Cohort 1 (Finished)</h4>
+				<p>Learn by doing open source contributions The course is led b..</p>
+				<button class="joinBtn">Start Learning</button>
+			</div>
+			<div class="grid-item">
+				<img src="./images/super30.png" alt="Course 3">
+				<h4>Super 30 Noida</h4>
+				<p>Starts 10th October You can join online, but preferably come..</p>
+				<button class="joinBtn">Start Learning</button>
+			</div>
+			<div class="grid-item">
+				<img src="./images/system.jpeg" alt="Course 3">
+				<h4>Live 1-100</h4>
+				<p>In the 1-100 journey, learn advanced Backend communication...</p>
+				<button class="joinBtn">Start Learning</button>
+			</div>
+		</div>
 	</div>
 
 	<div class="footer">
@@ -357,6 +363,16 @@
 		</div>
 	</div>
 
+	
+	<script>
+		
+			document.querySelectorAll('.joinBtn').forEach(button=> {
+				button.addEventListener('click', function() {
+					window.location.href = './signin.html'
+				})
+			});
+		
+	</script>
 
 	<script src="signin.js"></script>
 </body>

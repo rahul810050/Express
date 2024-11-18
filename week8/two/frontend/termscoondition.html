@@ -13,6 +13,7 @@
 			background-color: #282c34;
 			color: #e2e8f0;
 			overflow-x: hidden;
+			line-height: 1.6;
 		}
 
 		/* Navigation Styles */
@@ -89,7 +90,7 @@
 		}
 
 		/* Main Content Styles */
-		.main-content {
+		.container {
 			padding: 60px 20px;
 			text-align: center;
 			animation: fadeInUp 1s ease-out;
@@ -100,105 +101,38 @@
 			100% { transform: translateY(0); opacity: 1; }
 		}
 
-		.main-content h2 {
+		.container h1 {
 			color: #ffdd67;
 			font-size: 36px;
 			font-weight: 600;
+			margin-bottom: 20px;
 		}
 
-		.main-content p {
+		.container p {
 			font-size: 20px;
-			line-height: 1.6;
-			margin: 20px 0;
 			color: #b3c7d6;
-			max-width: 700px;
+			max-width: 800px;
 			margin: 0 auto;
+			line-height: 1.6;
 		}
 
-		/* Course Image Animation */
-		.coursesAnimation {
-			display: flex;
-			justify-content: center;
-			margin: 40px 0;
-			gap: 20px;
-			overflow: hidden;
-			flex-wrap: nowrap;
-		}
-
-		.coursesAnimation div {
-			width: 450px;
-			height: 300px;
-			overflow: hidden;
-			border-radius: 20px;
-			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-			animation: slide 12s infinite linear;
-			transition: transform 0.3s ease;
-		}
-
-		.coursesAnimation div:hover {
-			transform: scale(1.1);
-		}
-
-		.coursesAnimation img {
-			width: 100%;
-			height: 100%;
-		}
-
-		/* Slide Animation */
-		@keyframes slide {
-			0% { transform: translateX(100vw); }
-			100% { transform: translateX(-100vw); }
-		}
-
-		/* Why Buy Section */
-		.whyBuy {
-			text-align: center;
-			margin: 50px 20px;
-			animation: fadeIn 2s ease-in-out;
-		}
-
-		.whyBuy h1 {
+		.container h2 {
 			color: #ffdd67;
 			font-size: 32px;
 			font-weight: 600;
-			margin-bottom: 15px;
+			margin: 20px 0;
 		}
 
-		.whyBuy img {
-			width: 85%;
-			max-width: 1200px;
-			border-radius: 15px;
-			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-			transition: transform 0.3s ease;
-		}
-
-		.whyBuy img:hover {
-			transform: scale(1.05);
-		}
-
-		/* About Section */
-		.about {
-			background-color: #3a3f4b;
-			padding: 40px;
-			margin: 50px 20px;
-			border-radius: 15px;
-			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-			max-width: 800px;
-			margin-left: auto;
-			margin-right: auto;
-			animation: fadeInUp 2s ease-out;
-		}
-
-		.about h2 {
-			color: #ffdd67;
-			font-size: 30px;
-			margin-bottom: 15px;
-		}
-
-		.about p {
+		.container ol {
 			font-size: 18px;
-			line-height: 1.6;
 			color: #b3c7d6;
+			max-width: 700px;
+			margin: 0 auto;
+			line-height: 1.6;
+		}
+
+		.container ol li {
+			margin: 10px 0;
 		}
 
 		/* Footer Styles */
@@ -245,19 +179,10 @@
 			text-decoration: underline;
 		}
 
-		.footer img {
-			width: 150px;
-			transition: transform 0.3s ease;
-		}
-
-		.footer img:hover {
-			transform: scale(1.1);
-		}
-
 		.footer .social-media a img {
 			width: 35px;
 			margin: 0 10px;
-			transition: transform 0.3s ease, color 0.3s ease;
+			transition: transform 0.3s ease;
 		}
 
 		.footer .social-media a:hover img {
@@ -279,17 +204,13 @@
 
 		/* Responsive Design */
 		@media (max-width: 768px) {
-			.coursesAnimation {
-				flex-direction: column;
-			}
-
 			.footer-content {
 				flex-direction: column;
 				align-items: center;
 			}
 
-			.about, .footer {
-				padding: 20px;
+			.container {
+				padding: 40px 10px;
 			}
 		}
 	</style>
@@ -305,25 +226,33 @@
 		<button id="joinBtn">Join Now</button>
 	</div>
 
-	<div class="main-content">
-		<h2>Welcome to CourseHub</h2>
-		<p>Explore a wide range of online courses to accelerate your learning and career growth.</p>
-	</div>
+	<div class="container">
+		<h1>Terms and Conditions</h1>
+		<p>Welcome! By continuing to browse and use this website, you agree to comply with and be bound by the following terms and conditions, along with our privacy policy, which govern CourseHub’s relationship with you in relation to this website.</p>
 
-	<div class="coursesAnimation">
-		<div><img src="./images/cohort3.jpeg" alt="Course 1"></div>
-		<div><img src="./images/webdev&web3.png" alt="Course 2"></div>
-		<div><img src="./images/2.png" alt="Course 3"></div>
-	</div>
+		<p>The term ‘CourseHub’ refers to the owner of this website. The term ‘you’ refers to the user or viewer of our website.</p>
 
-	<div class="whyBuy">
-		<h1>Why Choose Our Platform?</h1>
-		<img src="./images/why should we buy.jpeg" alt="Why Choose Us">
-	</div>
+		<h2>Use of the Website</h2>
+		<p>The use of this website is subject to the following terms of use:</p>
+		<ol>
+			<li>The content of the pages is for general information and use only. It may change without notice.</li>
+			<li>We do not guarantee the accuracy, completeness, or suitability of the information found on this website.</li>
+			<li>We exclude liability for any inaccuracies or errors to the fullest extent permitted by law.</li>
+			<li>Your use of any information on this website is at your own risk.</li>
+			<li>You are responsible for ensuring that any products or services meet your specific requirements.</li>
+		</ol>
 
-	<div class="about" id="about">
-		<h2>About Us</h2>
-		<p>At CourseHub, we are committed to delivering high-quality education at your fingertips. Our platform offers a wide variety of courses designed by industry experts.</p>
+		<h2>Intellectual Property</h2>
+		<p>This website contains materials owned or licensed to us, including design, layout, appearance, and graphics. Reproduction is prohibited except in accordance with the copyright notice included in these terms.</p>
+
+		<h2>Links to Other Websites</h2>
+		<p>We may include links to other websites for your convenience. These links do not imply endorsement, and we are not responsible for the content of these websites.</p>
+
+		<h2>Limitation of Liability</h2>
+		<p>Unauthorized use of this website may lead to a claim for damages or be a criminal offense. Your use of this website is governed by the laws of India.</p>
+
+		<h2>Other Terms</h2>
+		<p>Credit card orders will begin once authorization is confirmed by the payment gateway.</p>
 	</div>
 
 	<div class="footer">

@@ -13,6 +13,7 @@
 			background-color: #282c34;
 			color: #e2e8f0;
 			overflow-x: hidden;
+			line-height: 1.6;
 		}
 
 		/* Navigation Styles */
@@ -35,7 +36,7 @@
 		.navigation h1 {
 			font-size: 30px;
 			color: #ffdd67;
-			font-weight: bold;
+			font-weight: 700;
 			letter-spacing: 1px;
 			text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 			animation: fadeIn 1s ease-in-out;
@@ -68,6 +69,7 @@
 		.navigation li a:hover {
 			color: #ffdd67;
 			transform: scale(1.1);
+			text-decoration: underline;
 		}
 
 		.navigation button {
@@ -79,17 +81,18 @@
 			border-radius: 25px;
 			cursor: pointer;
 			font-size: 16px;
-			transition: background 0.3s ease, transform 0.3s ease;
+			transition: all 0.3s ease;
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 		}
 
 		.navigation button:hover {
 			background-color: #ff5733;
-			transform: translateY(-2px);
+			transform: translateY(-3px);
+			box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 		}
 
 		/* Main Content Styles */
-		.main-content {
+		.container {
 			padding: 60px 20px;
 			text-align: center;
 			animation: fadeInUp 1s ease-out;
@@ -100,116 +103,42 @@
 			100% { transform: translateY(0); opacity: 1; }
 		}
 
-		.main-content h2 {
-			color: #ffdd67;
+		.container h1, .container h2 {
+			font-weight: 700;
 			font-size: 36px;
-			font-weight: 600;
+			color: #ffdd67;
+			margin-bottom: 20px;
 		}
 
-		.main-content p {
+		.container p {
 			font-size: 20px;
-			line-height: 1.6;
-			margin: 20px 0;
+			color: #b3c7d6;
+			max-width: 800px;
+			margin: 0 auto;
+			line-height: 1.8;
+		}
+
+		.container ol {
+			font-size: 18px;
 			color: #b3c7d6;
 			max-width: 700px;
 			margin: 0 auto;
-		}
-
-		/* Course Image Animation */
-		.coursesAnimation {
-			display: flex;
-			justify-content: center;
-			margin: 40px 0;
-			gap: 20px;
-			overflow: hidden;
-			flex-wrap: nowrap;
-		}
-
-		.coursesAnimation div {
-			width: 450px;
-			height: 300px;
-			overflow: hidden;
-			border-radius: 20px;
-			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-			animation: slide 12s infinite linear;
-			transition: transform 0.3s ease;
-		}
-
-		.coursesAnimation div:hover {
-			transform: scale(1.1);
-		}
-
-		.coursesAnimation img {
-			width: 100%;
-			height: 100%;
-		}
-
-		/* Slide Animation */
-		@keyframes slide {
-			0% { transform: translateX(100vw); }
-			100% { transform: translateX(-100vw); }
-		}
-
-		/* Why Buy Section */
-		.whyBuy {
-			text-align: center;
-			margin: 50px 20px;
-			animation: fadeIn 2s ease-in-out;
-		}
-
-		.whyBuy h1 {
-			color: #ffdd67;
-			font-size: 32px;
-			font-weight: 600;
-			margin-bottom: 15px;
-		}
-
-		.whyBuy img {
-			width: 85%;
-			max-width: 1200px;
-			border-radius: 15px;
-			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-			transition: transform 0.3s ease;
-		}
-
-		.whyBuy img:hover {
-			transform: scale(1.05);
-		}
-
-		/* About Section */
-		.about {
-			background-color: #3a3f4b;
-			padding: 40px;
-			margin: 50px 20px;
-			border-radius: 15px;
-			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-			max-width: 800px;
-			margin-left: auto;
-			margin-right: auto;
-			animation: fadeInUp 2s ease-out;
-		}
-
-		.about h2 {
-			color: #ffdd67;
-			font-size: 30px;
-			margin-bottom: 15px;
-		}
-
-		.about p {
-			font-size: 18px;
 			line-height: 1.6;
-			color: #b3c7d6;
+		}
+
+		.container ol li {
+			margin: 10px 0;
 		}
 
 		/* Footer Styles */
 		.footer {
 			background: linear-gradient(135deg, #1e293b, #3b4252);
 			color: #e2e8f0;
-			padding: 40px 20px;
+			padding: 30px 20px; /* Reduced padding */
 			text-align: center;
 			font-family: 'Segoe UI', sans-serif;
 			border-top: 2px solid #5b3cc4;
-			animation: fadeIn 3s ease-out;
+			animation: fadeIn 3s ease-out 0.5s;
 		}
 
 		.footer-content {
@@ -245,19 +174,11 @@
 			text-decoration: underline;
 		}
 
-		.footer img {
-			width: 150px;
-			transition: transform 0.3s ease;
-		}
-
-		.footer img:hover {
-			transform: scale(1.1);
-		}
-
 		.footer .social-media a img {
 			width: 35px;
+			height: 35px;
 			margin: 0 10px;
-			transition: transform 0.3s ease, color 0.3s ease;
+			transition: transform 0.3s ease;
 		}
 
 		.footer .social-media a:hover img {
@@ -266,10 +187,10 @@
 		}
 
 		.footer-bottom {
-			margin-top: 20px;
+			margin-top: 15px; /* Reduced margin */
 			font-size: 14px;
 			color: #b3c7d6;
-			padding-top: 10px;
+			padding-top: 8px; /* Reduced padding */
 			border-top: 1px solid #3b4252;
 		}
 
@@ -279,17 +200,30 @@
 
 		/* Responsive Design */
 		@media (max-width: 768px) {
-			.coursesAnimation {
-				flex-direction: column;
-			}
-
 			.footer-content {
 				flex-direction: column;
 				align-items: center;
 			}
 
-			.about, .footer {
-				padding: 20px;
+			.container {
+				padding: 40px 10px;
+			}
+
+			.container h1 {
+				font-size: 28px;
+			}
+
+			.container p {
+				font-size: 16px;
+			}
+
+			.footer h2 {
+				font-size: 20px;
+			}
+
+			.footer .social-media a img {
+				width: 30px;
+				height: 30px;
 			}
 		}
 	</style>
@@ -305,25 +239,9 @@
 		<button id="joinBtn">Join Now</button>
 	</div>
 
-	<div class="main-content">
-		<h2>Welcome to CourseHub</h2>
-		<p>Explore a wide range of online courses to accelerate your learning and career growth.</p>
-	</div>
-
-	<div class="coursesAnimation">
-		<div><img src="./images/cohort3.jpeg" alt="Course 1"></div>
-		<div><img src="./images/webdev&web3.png" alt="Course 2"></div>
-		<div><img src="./images/2.png" alt="Course 3"></div>
-	</div>
-
-	<div class="whyBuy">
-		<h1>Why Choose Our Platform?</h1>
-		<img src="./images/why should we buy.jpeg" alt="Why Choose Us">
-	</div>
-
-	<div class="about" id="about">
-		<h2>About Us</h2>
-		<p>At CourseHub, we are committed to delivering high-quality education at your fingertips. Our platform offers a wide variety of courses designed by industry experts.</p>
+	<div class="container">
+		<h1>Refund/Cancellation Policy</h1>
+		<p>You are entitled to a refund in the case of the purchased course not being assigned to you within the expiration date from your date of purchase or if you have paid twice for the same course. Under any other circumstance, we will not consider any requests for refund as this is a digital course purchase.</p>
 	</div>
 
 	<div class="footer">
@@ -339,17 +257,17 @@
 			<div class="footer-section social-media">
 				<h2>Follow Us</h2>
 				<a href="https://x.com/rahul___0099">
-                <img src="./images/twitter.svg" alt="Twitter">
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.hundredx.devs">
-                <img src="./images/location.svg" alt="Location">
-            </a>
-            <a href="https://www.youtube.com/@harkirat1">
-                <img src="./images/youtube.svg" alt="YouTube">
-            </a>
-            <a href="https://www.instagram.com/itz_r_a_hul_07/">
-                <img src="./images/instagram.svg" alt="Instagram">
-            </a>
+                    <img src="./images/twitter.svg" alt="Twitter">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.hundredx.devs">
+                    <img src="./images/location.svg" alt="Location">
+                </a>
+                <a href="https://www.youtube.com/@harkirat1">
+                    <img src="./images/youtube.svg" alt="YouTube">
+                </a>
+                <a href="https://www.instagram.com/itz_r_a_hul_07/">
+                    <img src="./images/instagram.svg" alt="Instagram">
+                </a>
 			</div>
 		</div>
 		<div class="footer-bottom">
